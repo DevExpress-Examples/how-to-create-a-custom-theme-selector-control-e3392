@@ -1,0 +1,38 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:helpers="clr-namespace:ThemeSelector.Helpers"
+    xmlns:local="clr-namespace:ThemeSelector">
+
+    <Style x:Key="ThemeSelectorBackgroundControl" TargetType="helpers:SimpleControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="helpers:SimpleControl">
+                    <Border Opacity="0.35">
+                        <Border.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="#00EFC0FE" Offset="1" />
+                                <GradientStop Color="#FFEFC0FE" />
+                            </RadialGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ThemeSelectorStickControl" TargetType="helpers:SimpleControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="helpers:SimpleControl">
+                    <Image Source="/ThemeSelector;component/Images/Stick.png" Stretch="None"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <DataTemplate x:Key="ThemeSelectorTextTemplate">
+        <Border CornerRadius="12" Background="#66231D39">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap" Foreground="White" Margin="12,3,12,4" />
+        </Border>
+    </DataTemplate>
+</ResourceDictionary>

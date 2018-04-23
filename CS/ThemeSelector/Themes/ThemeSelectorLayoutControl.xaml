@@ -1,0 +1,84 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:local="clr-namespace:ThemeSelector.Layout">
+
+    <Style TargetType="local:ThemeSelectorLayoutControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ThemeSelectorLayoutControl">
+                    <Grid Width="265" Height="317" Margin="41,0,0,0">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup>
+                                <VisualState x:Name="TextIsCollapsed" />
+                                <VisualState x:Name="TextIsVisible">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetName="TextPresenter" Storyboard.TargetProperty="(UIElement.Opacity)" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="TextIsCollapsed">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TextPresenter" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <QuinticEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition To="TextIsVisible">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TextPresenter" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ContentControl Content="{TemplateBinding BackgroundContent}" IsHitTestVisible="False" Margin="-200,-100,-100,-200" Grid.RowSpan="2"  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+                        <ContentControl Content="{TemplateBinding StickContent}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="-45,0,0,-48" IsHitTestVisible="False" Grid.Row="1" />
+                        <Canvas Width="250" Height="210" x:Name="ValuesCanvas" Grid.Row="1" HorizontalAlignment="Left" Background="Transparent">
+                            <ContentControl ContentTemplate="{TemplateBinding ValueTemplate}" Height="90" Width="77" Margin="2,0,1,0" Canvas.Left="40" Canvas.Top="-10" IsEnabled="False"/>
+                            <ContentControl ContentTemplate="{TemplateBinding ValueTemplate}" Height="90" Width="77" Margin="2,0,1,0" Canvas.Left="120" Canvas.Top="-10" IsEnabled="False"/>
+                            <ContentControl ContentTemplate="{TemplateBinding ValueTemplate}" Height="90" Width="77" Margin="2,0,1,0" Canvas.Left="120" Canvas.Top="132" IsEnabled="False"/>
+                            <ContentControl ContentTemplate="{TemplateBinding ValueTemplate}" Height="90" Width="77" Margin="2,0,1,0" Canvas.Left="160" Canvas.Top="61" IsEnabled="False"/>
+                            <ContentControl ContentTemplate="{TemplateBinding ValueTemplate}" Height="90" Width="77" Margin="2,0,1,0" Canvas.Left="40" Canvas.Top="132" IsEnabled="False"/>
+                            <ContentControl ContentTemplate="{TemplateBinding ValueTemplate}" Height="90" Width="77" Margin="2,0,1,0" Canvas.Left="0" Canvas.Top="61" IsEnabled="False"/>
+                            <ContentControl x:Name="CenterPresenter" ContentTemplate="{TemplateBinding ValueTemplate}" Height="90" Width="77" Margin="2,0,1,0" Canvas.Left="80" Canvas.Top="61" IsEnabled="False" Visibility="Collapsed" />
+                            <ContentControl x:Name="Value0Presenter" ContentTemplate="{TemplateBinding ValueTemplate}" Content="{TemplateBinding Value0}" Height="90" Width="77" Margin="2,0,1,0" Canvas.Left="40" Canvas.Top="-10" />
+                            <ContentControl x:Name="Value1Presenter" ContentTemplate="{TemplateBinding ValueTemplate}" Content="{TemplateBinding Value1}" Height="90" Width="77" Margin="2,0,1,0" Canvas.Left="120" Canvas.Top="-10" />
+                            <ContentControl x:Name="Value2Presenter" ContentTemplate="{TemplateBinding ValueTemplate}" Content="{TemplateBinding Value2}" Height="90" Width="77" Margin="2,0,1,0" Canvas.Left="120" Canvas.Top="132" />
+                            <ContentControl x:Name="Value3Presenter" ContentTemplate="{TemplateBinding ValueTemplate}" Content="{TemplateBinding Value3}" Height="90" Width="77" Margin="2,0,1,0" Canvas.Left="160" Canvas.Top="61" />
+                            <ContentControl x:Name="Value4Presenter" ContentTemplate="{TemplateBinding ValueTemplate}" Content="{TemplateBinding Value4}" Height="90" Width="77" Margin="2,0,1,0" Canvas.Left="40" Canvas.Top="132" />
+                            <ContentControl x:Name="Value5Presenter" ContentTemplate="{TemplateBinding ValueTemplate}" Content="{TemplateBinding Value5}" Height="90" Width="77" Margin="2,0,1,0" Canvas.Left="0" Canvas.Top="61" />
+                        </Canvas>
+                        <ContentControl Content="{TemplateBinding CloseContent}" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1" Margin="-15,0,15,0"/>
+                        <ContentControl x:Name="TextPresenter" Content="ThemeName" ContentTemplate="{TemplateBinding TextTemplate}" Margin="0,0,0,20" Opacity="0" HorizontalAlignment="Left" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="DoSelectStoryboard">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(local:ThemeSelectorLayoutControl.SelectingProgress)">
+                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.0" Value="0" />
+                        <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="1" />
+                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.35" Value="0" />
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

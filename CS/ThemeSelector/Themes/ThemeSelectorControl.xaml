@@ -1,0 +1,38 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:helpers="clr-namespace:ThemeSelector.Helpers"
+    xmlns:layout="clr-namespace:ThemeSelector.Layout"
+    xmlns:local="clr-namespace:ThemeSelector">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/ThemeSelector;component/Themes/SimpleControls.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <helpers:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+    <dx:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <Style TargetType="local:ThemeSelectorControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ThemeSelectorControl">
+                    <layout:ThemeSelectorLayoutControl x:Name="ThemeSelectorLayoutControl" TextTemplate="{StaticResource ThemeSelectorTextTemplate}">
+                        <layout:ThemeSelectorLayoutControl.BackgroundContent>
+                            <helpers:SimpleControl Style="{StaticResource ThemeSelectorBackgroundControl}" />
+                        </layout:ThemeSelectorLayoutControl.BackgroundContent>
+                        <layout:ThemeSelectorLayoutControl.StickContent>
+                            <helpers:SimpleControl Style="{StaticResource ThemeSelectorStickControl}" />
+                        </layout:ThemeSelectorLayoutControl.StickContent>
+                        <layout:ThemeSelectorLayoutControl.ValueTemplate>
+                            <DataTemplate>
+                                <local:ThemeButtonControl Theme="{Binding}" ThemeSelectorLayoutControl="{Binding ElementName=ThemeSelectorLayoutControl}" />
+                            </DataTemplate>
+                        </layout:ThemeSelectorLayoutControl.ValueTemplate>
+                        <!--<layout:ThemeSelectorLayoutControl.CloseContent>
+                            <local:CloseThemeSelectorButtonControl />
+                        </layout:ThemeSelectorLayoutControl.CloseContent>-->
+                    </layout:ThemeSelectorLayoutControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
