@@ -1,0 +1,207 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    
+    xmlns:helpers="clr-namespace:ThemeSelector.Helpers"
+    xmlns:layout="clr-namespace:ThemeSelector.Layout"
+    xmlns:local="clr-namespace:ThemeSelector">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/ThemeSelector;component/Helpers/Themes/EmptyButton.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <helpers:ScaleConverter x:Key="ScaleConverter" />
+    <dx:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" Invert="False" />
+    <dx:BooleanToVisibilityConverter x:Key="InvertBooleanToVisibilityConverter" Invert="True" />
+    <dx:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" Invert="False" />
+    <helpers:TextToResourceUriConverter x:Key="ThemeIconConverter" Prefix="/Images/" Suffix=".png">
+        <helpers:TextToResourceUriConverter.AssemblyMarker>
+            <local:AssemblyMarker />
+        </helpers:TextToResourceUriConverter.AssemblyMarker>
+    </helpers:TextToResourceUriConverter>
+    <Style x:Key="ThemeButton" TargetType="ToggleButton">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid x:Name="grid" RenderTransformOrigin="0.5,0.5">
+                        <Grid.RenderTransform>
+                            <ScaleTransform />
+                        </Grid.RenderTransform>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0" To="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="shadow">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="2">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <QuinticEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" Storyboard.TargetName="shadow">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="2">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <QuinticEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="shadow">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <QuinticEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition GeneratedDuration="0" To="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="grid">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.175" Value="0.8">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <QuinticEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <QuinticEase EasingMode="EaseIn" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" Storyboard.TargetName="grid">
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.175" Value="0.8">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <QuinticEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <QuinticEase EasingMode="EaseIn" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="Pressed" GeneratedDuration="0" To="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:0.325" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="grid">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseIn" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Duration="0:0:0.325" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" Storyboard.TargetName="grid">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseIn" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="0.15" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState x:Name="Pressed" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Indeterminate" />
+                                <VisualState x:Name="Checked" />
+                                <VisualState x:Name="Unchecked" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid x:Name="shadow" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5">
+                            <Grid.RenderTransform>
+                                <ScaleTransform ScaleY="0" ScaleX="0" />
+                            </Grid.RenderTransform>
+                            <Path Stretch="Fill" Data="F1 M 586.5,590L 625,568L 625,522L 586.5,500L 548,522L 548,568L 586.5,590 Z " UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5" Opacity="0.5">
+                                <Path.Fill>
+                                    <RadialGradientBrush RadiusY="0.498" RadiusX="0.586">
+                                        <GradientStop Color="#FFF4C6FF" Offset="1" />
+                                        <GradientStop Color="#006A84D4" Offset="0.35" />
+                                    </RadialGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                        </Grid>
+                        <Grid x:Name="back" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Opacity="0.75">
+                            <Path Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 586.5,590L 625,568L 625,522L 586.5,500L 548,522L 548,568L 586.5,590 Z " />
+                            <Path Stretch="Fill" Fill="#FFC1B9E5" Data="F1 M 586.5,589L 624,567.489L 624,522.511L 586.5,501L 549,522.511L 549,567.489L 586.5,589 Z " Margin="1" />
+                            <Path Stretch="Fill" Data="F1 M 586.5,583L 619,564.422L 619,525.578L 586.5,507L 554,525.578L 554,564.422L 586.5,583 Z " Margin="6,7">
+                                <Path.Fill>
+                                    <LinearGradientBrush StartPoint="0.831407,0.828944" EndPoint="1.7316,0.828944">
+                                        <LinearGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <SkewTransform CenterX="0.831407" CenterY="0.828944" AngleX="-8.383" AngleY="0" />
+                                                <RotateTransform CenterX="0.831407" CenterY="0.828944" Angle="230.777" />
+                                            </TransformGroup>
+                                        </LinearGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#7FFFFFFF" Offset="0" />
+                                        <GradientStop Color="#00FFFFFF" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                        </Grid>
+                        <Grid x:Name="color" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center">
+                            <Path Stretch="Fill" Fill="#FF8C87B1" Data="F1 M 586.5,582L 618,563.911L 618,526.089L 586.5,508L 555,526.089L 555,563.911L 586.5,582 Z " Margin="7,8" />
+                            <Path Stretch="Fill" Data="F1 M 586.5,581L 617,563.4L 617,526.6L 586.5,509L 556,526.6L 556,563.4L 586.5,581 Z " Margin="8,9">
+                                <Path.Fill>
+                                    <LinearGradientBrush StartPoint="0.492486,0.0138864" EndPoint="0.492486,1">
+                                        <GradientStop Color="#FFDFCEF6" Offset="0" />
+                                        <GradientStop Color="#FFF3EAFE" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Path Stretch="Fill" Data="F1 M 556,563.4L 556,526.6L 586.5,509L 604.449,519.358C 588.605,533.181 574.946,549.632 564.088,568.067L 556,563.4 Z " Margin="8,10,20,22">
+                                <Path.Fill>
+                                    <LinearGradientBrush StartPoint="0.351738,-0.0169315" EndPoint="1.38438,-0.0169315">
+                                        <LinearGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <SkewTransform CenterX="0.351738" CenterY="-0.0169315" AngleX="3.34914" AngleY="0" />
+                                                <RotateTransform CenterX="0.351738" CenterY="-0.0169315" Angle="100.363" />
+                                            </TransformGroup>
+                                        </LinearGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#7FFFFFFF" Offset="0" />
+                                        <GradientStop Color="#00FFFFFF" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="8,9,8,9" Clip="M 30.5,71L 62,54.4L 62,18L 30.5,1L 1,17.6L 1,54L 30.5,71 Z">
+                                <helpers:UniversalPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="local:ThemeButtonControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ThemeButtonControl">
+                    <ToggleButton x:Name="Button" Style="{StaticResource ThemeButton}">
+                        <Image Source="{Binding Theme.LargeGlyph, RelativeSource={RelativeSource TemplatedParent}}" Stretch="None" />
+                    </ToggleButton>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="local:CloseButtonControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:CloseButtonControl">
+                    <Button x:Name="Button" Style="{StaticResource EmptyButton}">
+                        <Image Source="/ThemeSelector;component/Images/Close.png" Stretch="None" />
+                    </Button>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
